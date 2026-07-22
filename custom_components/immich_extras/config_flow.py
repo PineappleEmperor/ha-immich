@@ -19,7 +19,7 @@ from homeassistant.const import (
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import ImmichExtrasApi
-from .const import DEFAULT_PORT, DOMAIN
+from .const import CONF_USE_SSL, DEFAULT_PORT, DOMAIN, ENTRY_MINOR_VERSION
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -45,6 +45,8 @@ def _parse_url(url: str) -> tuple[str, int, bool]:
 
 class ImmichExtrasConfigFlow(ConfigFlow, domain=DOMAIN):
     """Handle the Immich Extras config flow."""
+
+    MINOR_VERSION = ENTRY_MINOR_VERSION
 
     async def _validate(
         self, host: str, port: int, use_ssl: bool, api_key: str
@@ -83,6 +85,7 @@ class ImmichExtrasConfigFlow(ConfigFlow, domain=DOMAIN):
                         data={
                             CONF_HOST: host,
                             CONF_PORT: port,
+                            CONF_USE_SSL: use_ssl,
                             CONF_VERIFY_SSL: user_input[CONF_VERIFY_SSL],
                             CONF_API_KEY: user_input[CONF_API_KEY],
                         },
@@ -155,6 +158,7 @@ class ImmichExtrasConfigFlow(ConfigFlow, domain=DOMAIN):
                         data_updates={
                             CONF_HOST: host,
                             CONF_PORT: port,
+                            CONF_USE_SSL: use_ssl,
                             CONF_VERIFY_SSL: user_input[CONF_VERIFY_SSL],
                         },
                     )

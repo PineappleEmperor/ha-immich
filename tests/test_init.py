@@ -12,7 +12,7 @@ from homeassistant.helpers import device_registry as dr
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.immich_extras import async_remove_config_entry_device
-from custom_components.immich_extras.const import DOMAIN
+from custom_components.immich_extras.const import CONF_USE_SSL, DOMAIN
 
 from .conftest import USER_ID
 
@@ -50,9 +50,11 @@ async def test_two_entries_parallel(
             domain=DOMAIN,
             title=f"host-{i}",
             unique_id=f"user-{i}",
+            minor_version=2,
             data={
                 CONF_HOST: f"host-{i}",
                 CONF_PORT: 2283,
+                CONF_USE_SSL: False,
                 CONF_VERIFY_SSL: True,
                 CONF_API_KEY: "secret-key",
             },
@@ -66,6 +68,28 @@ async def test_two_entries_parallel(
     )
     await hass.async_block_till_done()
     assert all(entry.state is ConfigEntryState.LOADED for entry in entries)
+
+
+async def test_migrate_adds_use_ssl(
+    hass: HomeAssistant, mock_immich: MagicMock
+) -> None:
+    """A pre-scheme (0.1.0) entry gains use_ssl inferred from its port."""
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        title="immich.local",
+        unique_id="user-1",
+        minor_version=1,
+        data={
+            CONF_HOST: "immich.local",
+            CONF_PORT: 8181,
+            CONF_VERIFY_SSL: True,
+            CONF_API_KEY: "secret-key",
+        },
+    )
+    await _setup(hass, entry)
+    assert entry.state is ConfigEntryState.LOADED
+    assert entry.minor_version == 2
+    assert entry.data[CONF_USE_SSL] is False
 
 
 async def test_remove_stale_device(
