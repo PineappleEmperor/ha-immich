@@ -18,7 +18,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import FlowResultType
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.immich_extras.const import DOMAIN
+from custom_components.immich_extras.const import CONF_USE_SSL, DOMAIN
 
 from .conftest import USER_ID
 
@@ -46,10 +46,30 @@ async def test_user_flow(hass: HomeAssistant, mock_immich: MagicMock) -> None:
     assert result["data"] == {
         CONF_HOST: "immich.example.com",
         CONF_PORT: 443,
+        CONF_USE_SSL: True,
         CONF_VERIFY_SSL: True,
         CONF_API_KEY: "secret-key",
     }
     assert result["result"].unique_id == USER_ID
+
+
+async def test_user_flow_http_scheme(
+    hass: HomeAssistant, mock_immich: MagicMock
+) -> None:
+    """An http URL is stored with use_ssl False and its explicit port."""
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN,
+        context={"source": SOURCE_USER},
+        data={
+            CONF_URL: "http://192.168.1.5:8181",
+            CONF_API_KEY: "secret-key",
+            CONF_VERIFY_SSL: True,
+        },
+    )
+    assert result["type"] is FlowResultType.CREATE_ENTRY
+    assert result["data"][CONF_USE_SSL] is False
+    assert result["data"][CONF_HOST] == "192.168.1.5"
+    assert result["data"][CONF_PORT] == 8181
 
 
 @pytest.mark.parametrize(

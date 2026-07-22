@@ -13,7 +13,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import ImmichExtrasApi
-from .const import DOMAIN, LOGGER, UPDATE_INTERVAL
+from .const import CONF_USE_SSL, DOMAIN, LOGGER, UPDATE_INTERVAL
 from .models import ImmichExtrasData
 
 if TYPE_CHECKING:
@@ -44,7 +44,7 @@ class ImmichExtrasCoordinator(DataUpdateCoordinator[ImmichExtrasData]):
             config_entry.data[CONF_API_KEY],
             config_entry.data[CONF_HOST],
             config_entry.data[CONF_PORT],
-            config_entry.data[CONF_VERIFY_SSL],
+            config_entry.data[CONF_USE_SSL],
         )
         self.is_admin = False
 

@@ -11,7 +11,7 @@ from aioimmich.users.models import ImmichUserObject
 from homeassistant.const import CONF_API_KEY, CONF_HOST, CONF_PORT, CONF_VERIFY_SSL
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.immich_extras.const import DOMAIN
+from custom_components.immich_extras.const import CONF_USE_SSL, DOMAIN
 
 USER_ID = "user-1"
 
@@ -112,9 +112,11 @@ def mock_config_entry() -> MockConfigEntry:
         domain=DOMAIN,
         title="immich.example.com",
         unique_id=USER_ID,
+        minor_version=2,
         data={
             CONF_HOST: "immich.example.com",
             CONF_PORT: 2283,
+            CONF_USE_SSL: False,
             CONF_VERIFY_SSL: True,
             CONF_API_KEY: "secret-key",
         },

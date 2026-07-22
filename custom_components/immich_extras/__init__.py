@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from homeassistant.const import Platform
+from homeassistant.const import CONF_PORT, Platform
 
-from .const import DOMAIN
+from .const import CONF_USE_SSL, DOMAIN, ENTRY_MINOR_VERSION, HTTPS_PORT
 from .coordinator import ImmichExtrasConfigEntry, ImmichExtrasCoordinator
 
 if TYPE_CHECKING:
@@ -24,6 +24,22 @@ async def async_setup_entry(
     await coordinator.async_config_entry_first_refresh()
     entry.runtime_data = coordinator
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    return True
+
+
+async def async_migrate_entry(
+    hass: HomeAssistant, entry: ImmichExtrasConfigEntry
+) -> bool:
+    """Migrate an old config entry."""
+    if entry.minor_version < ENTRY_MINOR_VERSION:
+        data = {**entry.data}
+        # 0.1.0 entries never stored the connection scheme; infer it from the
+        # port (https default → https, anything else → http) so existing setups
+        # recover.
+        data.setdefault(CONF_USE_SSL, data.get(CONF_PORT) == HTTPS_PORT)
+        hass.config_entries.async_update_entry(
+            entry, data=data, minor_version=ENTRY_MINOR_VERSION
+        )
     return True
 
 
