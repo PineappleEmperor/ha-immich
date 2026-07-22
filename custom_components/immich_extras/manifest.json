@@ -1,0 +1,14 @@
+{
+  "domain": "immich_extras",
+  "name": "Immich Extras",
+  "codeowners": ["@PineappleEmperor"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/PineappleEmperor/ha-immich",
+  "integration_type": "service",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/PineappleEmperor/ha-immich/issues",
+  "quality_scale": "platinum",
+  "requirements": ["aioimmich==0.16.1"],
+  "version": "0.1.0"
+}
