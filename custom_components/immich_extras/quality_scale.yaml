@@ -1,0 +1,75 @@
+rules:
+  # Bronze
+  action-setup:
+    status: exempt
+    comment: The integration registers no custom actions.
+  appropriate-polling: done
+  brands: done
+  common-modules: done
+  config-flow-test-coverage: done
+  config-flow: done
+  dependency-transparency: done
+  docs-actions:
+    status: exempt
+    comment: The integration registers no custom actions.
+  docs-high-level-description: done
+  docs-installation-instructions: done
+  docs-removal-instructions: done
+  entity-event-setup: done
+  entity-unique-id: done
+  has-entity-name: done
+  runtime-data: done
+  test-before-configure: done
+  test-before-setup: done
+  unique-config-entry: done
+  # Silver
+  config-entry-unloading: done
+  log-when-unavailable: done
+  entity-unavailable: done
+  action-exceptions:
+    status: exempt
+    comment: The integration registers no custom actions.
+  reauthentication-flow: done
+  parallel-updates: done
+  test-coverage: done
+  integration-owner: done
+  docs-installation-parameters: done
+  docs-configuration-parameters: done
+  # Gold
+  entity-translations: done
+  entity-device-class: done
+  devices: done
+  entity-category: done
+  entity-disabled-by-default:
+    status: exempt
+    comment: >-
+      The entity set is small and low-cardinality; every sensor is useful to
+      most users, so all are enabled by default by design.
+  discovery:
+    status: exempt
+    comment: An Immich server is reached by user-supplied URL; there is no network discovery.
+  stale-devices: done
+  diagnostics: done
+  exception-translations: done
+  icon-translations: done
+  reconfiguration-flow: done
+  dynamic-devices: done
+  discovery-update-info:
+    status: exempt
+    comment: No discovery, so there is nothing to update from discovery info.
+  repair-issues:
+    status: exempt
+    comment: The integration raises no user-repairable issues.
+  docs-use-cases: done
+  docs-supported-devices:
+    status: exempt
+    comment: This is a service integration; it exposes server data, not physical devices.
+  docs-supported-functions: done
+  docs-data-update: done
+  docs-known-limitations: done
+  docs-troubleshooting: done
+  docs-examples: done
+  # Platinum
+  async-dependency: done
+  inject-websession: done
+  strict-typing: done

@@ -1,0 +1,48 @@
+[project]
+name = "immich_extras"
+version = "0.1.0"
+description = "Home Assistant custom integration exposing extra Immich server data"
+readme = "README.md"
+requires-python = ">=3.14"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "ANN401",   # Dynamically typed *args/**kwargs in HA signatures
+  "ARG001",   # Unused hass/entry args are part of fixed HA callback signatures
+  "ARG002",   # Unused method args are part of fixed HA flow signatures
+  "COM812",   # Handled by the formatter
+  "D203",     # Conflicts with D211
+  "D213",     # Conflicts with D212
+  "EM101",    # HA raises with string literals directly
+  "EM102",
+  "FBT001",   # Boolean flags are idiomatic (verify_ssl, is_admin)
+  "FBT002",
+  "PLR0913",  # HA entity/flow signatures take many args
+  "S101",     # assert on isinstance is an HA convention around typed clients
+  "TC001",    # Keep annotation imports readable; runtime cost is nil
+  "TC002",
+  "TC003",
+  "TID252",   # Relative imports within the integration package
+  "TRY003",   # HA raises with inline messages
+]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*" = ["T20", "INP001", "D", "E501", "PLR0911"]
+"tests/**" = ["S101", "SLF001", "INP001", "ANN", "D", "PLR2004", "E501", "PT018"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.pylint.main]
+py-version = "3.14"
+
+[tool.pylint."messages control"]
+disable = ["duplicate-code"]

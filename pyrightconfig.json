@@ -1,0 +1,8 @@
+{
+  "typeCheckingMode": "standard",
+  "include": ["custom_components"],
+  "venvPath": ".",
+  "venv": ".venv",
+  "reportPrivateImportUsage": false,
+  "reportIncompatibleVariableOverride": false
+}

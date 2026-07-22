@@ -1,0 +1,31 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "licensed": { "default": "mdi:certificate" },
+      "jobs_problem": { "default": "mdi:alert-circle" }
+    },
+    "sensor": {
+      "people_count": { "default": "mdi:account-multiple" },
+      "tags_count": { "default": "mdi:tag-multiple" },
+      "albums_count": { "default": "mdi:image-album" },
+      "my_quota_size": { "default": "mdi:database" },
+      "my_quota_usage": { "default": "mdi:database-check" },
+      "my_quota_pct": { "default": "mdi:gauge" },
+      "total_usage": { "default": "mdi:database" },
+      "jobs_active": { "default": "mdi:cog-play" },
+      "jobs_waiting": { "default": "mdi:cog-clock" },
+      "jobs_failed": { "default": "mdi:cog-off" },
+      "queue_thumbnailgeneration_waiting": { "default": "mdi:image-multiple" },
+      "queue_metadataextraction_waiting": { "default": "mdi:file-cog" },
+      "queue_facedetection_waiting": { "default": "mdi:face-recognition" },
+      "queue_smartsearch_waiting": { "default": "mdi:image-search" },
+      "queue_backupdatabase_waiting": { "default": "mdi:database-export" },
+      "queue_library_waiting": { "default": "mdi:folder-multiple-image" },
+      "user_photos": { "default": "mdi:image" },
+      "user_videos": { "default": "mdi:video" },
+      "user_usage": { "default": "mdi:database" },
+      "user_quota": { "default": "mdi:database-outline" },
+      "user_quota_pct": { "default": "mdi:gauge" }
+    }
+  }
+}
