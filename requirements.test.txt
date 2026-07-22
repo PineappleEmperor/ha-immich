@@ -1,0 +1,3 @@
+homeassistant
+pytest-homeassistant-custom-component
+aioimmich==0.16.1

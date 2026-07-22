@@ -1,0 +1,78 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "url": "URL",
+          "api_key": "API key",
+          "verify_ssl": "Verify SSL certificate"
+        },
+        "data_description": {
+          "url": "The full URL of your Immich server, including the scheme and port.",
+          "api_key": "An Immich API key. An admin key unlocks per-user and job sensors.",
+          "verify_ssl": "Whether to verify the server's SSL certificate"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate with Immich",
+        "data": {
+          "api_key": "API key"
+        }
+      },
+      "reconfigure": {
+        "data": {
+          "url": "URL",
+          "verify_ssl": "Verify SSL certificate"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "The URL is not valid.",
+      "invalid_auth": "Invalid authentication",
+      "cannot_connect": "Failed to connect"
+    },
+    "abort": {
+      "already_configured": "This Immich account is already configured.",
+      "reauth_successful": "Re-authentication was successful",
+      "reconfigure_successful": "Re-configuration was successful",
+      "wrong_account": "The API key belongs to a different Immich account."
+    }
+  },
+  "exceptions": {
+    "cannot_connect": {
+      "message": "Failed to connect to the Immich server."
+    },
+    "forbidden": {
+      "message": "The API key is not permitted to read this data."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "licensed": { "name": "Licensed" },
+      "jobs_problem": { "name": "Job failures" }
+    },
+    "sensor": {
+      "people_count": { "name": "People" },
+      "tags_count": { "name": "Tags" },
+      "albums_count": { "name": "Albums" },
+      "my_quota_size": { "name": "My quota" },
+      "my_quota_usage": { "name": "My quota used" },
+      "my_quota_pct": { "name": "My quota usage" },
+      "total_usage": { "name": "Total usage" },
+      "jobs_active": { "name": "Jobs active" },
+      "jobs_waiting": { "name": "Jobs waiting" },
+      "jobs_failed": { "name": "Jobs failed" },
+      "queue_thumbnailgeneration_waiting": { "name": "Thumbnail generation waiting" },
+      "queue_metadataextraction_waiting": { "name": "Metadata extraction waiting" },
+      "queue_facedetection_waiting": { "name": "Face detection waiting" },
+      "queue_smartsearch_waiting": { "name": "Smart search waiting" },
+      "queue_backupdatabase_waiting": { "name": "Database backup waiting" },
+      "queue_library_waiting": { "name": "Library scan waiting" },
+      "user_photos": { "name": "Photos" },
+      "user_videos": { "name": "Videos" },
+      "user_usage": { "name": "Usage" },
+      "user_quota": { "name": "Quota" },
+      "user_quota_pct": { "name": "Quota usage" }
+    }
+  }
+}
